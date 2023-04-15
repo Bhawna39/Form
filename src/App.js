@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 
 function Form() {
-  const [name, setName] = useState("");
+  const [fullname, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -12,8 +12,7 @@ function Form() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-    // Perform form submission logic here
-  
+    
 
   function handleEmailChange(event) {
     setEmail(event.target.value);
@@ -27,7 +26,7 @@ function Form() {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
     if (event.target.value.length < 8) {
-      setPasswordError("Password must be at least 8 characters long");
+      setPasswordError("Password should be at least 8 characters");
     } else {
       setPasswordError("");
     }
@@ -43,23 +42,23 @@ function Form() {
   }
  const handleSubmit = (event) => {
   event.preventDefault();
-  if (!name || !email || !password || !confirmPassword) {
-    setErrorMessage("Error:All fields are required");
+  if (!fullname || !email || !password || !confirmPassword) {
+    setErrorMessage("Error: All the fields are mandatory");
   } else if (password !== confirmPassword) {
     setErrorMessage("Passwords do not match");
   } else {
     setSuccessMessage("Successfully Signed Up!");
-    // here you can submit the form data to your backend or do any other action
+   
   }
 };
 
 return (
   <div className="container">
   <h1 className="heading">Signup</h1>
-  <form className="credentials" onSubmit={handleSubmit}>
+  <form className="form" onSubmit={handleSubmit}>
 
     <div>
-      <input type="text"value={name} placeholder="Name" onChange={(event) => setName(event.target.value)}
+      <input type="text"value={fullname} placeholder="Full Name" onChange={(event) => setFullName(event.target.value)}
       />
     </div>
     <div>
